@@ -9,6 +9,9 @@ dist/
 web-build/
 expo-env.d.ts
 
+# Local interview and assignment notes
+docs/
+
 # Native
 .kotlin/
 *.orig.*
