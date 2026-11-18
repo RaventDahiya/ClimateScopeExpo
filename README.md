@@ -2,25 +2,33 @@
 
 ClimateScope is a dark-themed Expo weather app that searches Open-Meteo for a
 city, loads its current conditions, and presents hourly and five-day forecast
-data. It is the take-home Weather App assignment implemented with
-React Native, Expo Router, and TypeScript.
+data. It is implemented with React Native, Expo Router, and TypeScript.
 
 ## Run the app
 
 ### Prerequisites
 
-- Node.js compatible with the installed Expo toolchain
-- npm
-- Android Studio and an emulator, Xcode and an iOS simulator, or Expo web
+- Node.js and npm
+- One supported target:
+  - Android: Android Studio with an emulator
+  - iOS: macOS with Xcode and an iOS simulator
+  - Web: a modern desktop or mobile browser
 
-### Install and start
+### Installation
 
 ```bash
 npm install
+```
+
+### Start the app
+
+Start the Expo development server:
+
+```bash
 npm run start
 ```
 
-Choose a target from the Expo developer menu, or run one directly:
+Then choose a target in the Expo menu, or start a platform directly:
 
 ```bash
 npm run android
@@ -31,6 +39,10 @@ npm run web
 No API key or environment variables are required. The app uses the free
 [Open-Meteo geocoding API](https://open-meteo.com/en/docs/geocoding-api) and
 [forecast API](https://open-meteo.com/en/docs).
+
+For the first run, keep your device or emulator and development server on the
+same network. Expo may open a different URL depending on network configuration
+and available targets.
 
 ## What is implemented
 
@@ -45,17 +57,6 @@ No API key or environment variables are required. The app uses the free
 - Offline fallback with an explicit “data may be outdated” banner.
 - Cancellation of stale searches and weather requests.
 - Pull-to-refresh, Celsius/Fahrenheit toggle, and system dark-theme setup.
-
-### Assignment bonuses
-
-| Bonus            | Status                                                                                                          |
-| ---------------- | --------------------------------------------------------------------------------------------------------------- |
-| Unit toggle      | Implemented in `useWeatherViewModel` and `app/index.tsx`                                                        |
-| Pull-to-refresh  | Implemented with React Native `RefreshControl`                                                                  |
-| Dark mode        | Implemented as the current dark visual theme                                                                    |
-| Current location | Not implemented; add `expo-location`, request permission, reverse-geocode coordinates, then reuse `loadWeather` |
-| Search history   | Not implemented; persist a bounded city array and render it before remote results                               |
-| Unit tests       | Not implemented; add tests for `weatherVisual`, parsing, timeout/error mapping, and cache validation            |
 
 ## Architecture
 
@@ -148,14 +149,18 @@ The versions below come from `package.json`:
 
 ## Assumptions and limitations
 
-- Temperature is requested in Open-Meteo's default Celsius units; Fahrenheit is
-  derived locally for display.
-- Weather icons are text symbols mapped from WMO codes, so they do not require
-  image assets.
-- The app currently uses one screen with a modal search flow instead of a
-  separate navigation screen.
-- There is no automated test suite yet.
-- Open-Meteo availability and device connectivity remain external dependencies.
+- Weather temperatures are fetched in Celsius, and Fahrenheit values are
+  calculated in the app.
+- Weather icons are text symbols mapped to WMO codes; they are not image assets.
+- The app uses one main screen with a search modal rather than separate search
+  and forecast screens.
+- Current-device location and saved search history are not implemented.
+- Pull-to-refresh, offline cached data, and unit conversion are implemented,
+  but this project does not currently include an automated test suite.
+- Weather and geocoding accuracy, availability, and request limits depend on
+  the external Open-Meteo APIs.
+- Data requires network access for fresh responses; cached weather is only
+  available after a previous successful request.
 
 ## License
 
