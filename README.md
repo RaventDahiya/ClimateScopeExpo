@@ -2,7 +2,8 @@
 
 ClimateScope is a dark-themed Expo weather app that searches Open-Meteo for a
 city, loads its current conditions, and presents hourly and five-day forecast
-data. It is implemented with React Native, Expo Router, and TypeScript.
+data. It is the take-home Weather App assignment implemented with
+React Native, Expo Router, and TypeScript.
 
 ## Run the app
 
@@ -44,6 +45,17 @@ No API key or environment variables are required. The app uses the free
 - Offline fallback with an explicit “data may be outdated” banner.
 - Cancellation of stale searches and weather requests.
 - Pull-to-refresh, Celsius/Fahrenheit toggle, and system dark-theme setup.
+
+### Assignment bonuses
+
+| Bonus            | Status                                                                                                          |
+| ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| Unit toggle      | Implemented in `useWeatherViewModel` and `app/index.tsx`                                                        |
+| Pull-to-refresh  | Implemented with React Native `RefreshControl`                                                                  |
+| Dark mode        | Implemented as the current dark visual theme                                                                    |
+| Current location | Not implemented; add `expo-location`, request permission, reverse-geocode coordinates, then reuse `loadWeather` |
+| Search history   | Not implemented; persist a bounded city array and render it before remote results                               |
+| Unit tests       | Not implemented; add tests for `weatherVisual`, parsing, timeout/error mapping, and cache validation            |
 
 ## Architecture
 
